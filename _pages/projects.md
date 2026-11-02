@@ -2,10 +2,10 @@
 layout: page
 title: projects
 permalink: /projects/
-description: A growing collection of your cool projects.
+description: Research, school projects from CentraleSupélec and the Master MVA and personal projects.
 nav: true
 nav_order: 3
-display_categories: [work, fun]
+display_categories: [research, coursework, personal]
 horizontal: false
 ---
 
