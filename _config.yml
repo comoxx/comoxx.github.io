@@ -7,7 +7,7 @@ first_name: Côme
 middle_name:
 last_name: Hosxe
 contact_note: >
-  Email is the best way to reach me.
+  Email is the best way to reach me: come.hosxe [at] gmail [dot] com
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   Côme Hosxe. Machine learning research engineer. CentraleSupélec and Master MVA graduate.
 footer_text: >
@@ -46,7 +46,7 @@ repo_trophies:
 # -----------------------------------------------------------------------------
 
 navbar_fixed: true
-footer_fixed: true
+footer_fixed: false
 search_enabled: true
 socials_in_search: true
 posts_in_search: false
