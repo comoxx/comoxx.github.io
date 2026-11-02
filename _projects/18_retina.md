@@ -7,34 +7,17 @@ importance: 13
 category: coursework
 ---
 
-The task is to segment blood vessels in retinal images without deep learning. We work on the 20 images of the DRIVE dataset that come with manual annotations. The score is the Dice coefficient between our mask $P$ and the manual mask $G$, averaged over the images:
+Our final pipeline reaches a mean Dice score of 0.737 on the 20 annotated DRIVE images, without any deep learning.
 
-$$\text{Dice}(P, G) = \frac{2\,|P \cap G|}{|P| + |G|}.$$
-
-The field of view is found by a simple threshold on the gray level ($> 0.1$). All later steps only look inside it.
+The task is to segment blood vessels in retinal images with classical image processing only. The score is the Dice coefficient between our mask and the manual one, averaged over the images.
 
 **Method**
 
-1. **Contrast.** Vessels are most visible in the green channel. We apply CLAHE to it (clip limit 3.5, 8×8 tiles).
-2. **Black top-hat.** Vessels are thin dark structures. A morphological closing with a disk $B$ fills them, and the difference brings them out:
+Vessels are most visible in the green channel, so we enhance it with CLAHE. We then compute three responses. A black top-hat brings out thin dark structures. A matched filter with a Gaussian cross-section is rotated in 12 directions, and we keep the maximum. A Meijering ridge filter works at three scales. Each response is divided by its maximum, then combined with weights found by grid search:
 
-    $$\text{BTH}(f) = (f \bullet B) - f, \qquad f \bullet B = (f \oplus B) \ominus B.$$
+$$R = 0.40\,\widehat{\text{BTH}} + 0.30\,\widehat{\text{MF}} + 0.30\,\widehat{\text{Meij}}.$$
 
-    The baseline uses a disk of radius 11. The final pipeline uses radius 6.
-3. **Matched filter.** The cross-section of a vessel looks like a Gaussian. We convolve the inverted image with a zero-mean kernel that has a Gaussian profile ($\sigma = 2$, length 11) across its axis. The kernel is rotated in 12 directions and we keep the maximum response.
-4. **Meijering filter.** A ridge filter based on the Hessian, at scales $$\sigma \in \lbrace 1, 2, 3 \rbrace$$.
-5. **Fusion.** Each response is divided by its maximum, then combined:
-
-    $$R = 0.40\,\widehat{\text{BTH}} + 0.30\,\widehat{\text{MF}} + 0.30\,\widehat{\text{Meij}}.$$
-
-    The weights come from a grid search.
-6. **Threshold.** The Isodata method picks a threshold $\tau$ on $R$ that sits halfway between the mean of the pixels below it and the mean of the pixels above it.
-7. **Seed and grow.** Confident pixels $$S_0 = \lbrace R > 1.15\,\tau \rbrace$$ are the seeds. They grow into weaker neighbors (8-connectivity) as long as these pass a low threshold:
-
-    $$S_{k+1} = S_k \cup \Big( (S_k \oplus B_8) \cap \{R > 0.25\} \cap \text{FOV} \Big),$$
-
-    until nothing changes. This is a reconstruction by dilation. A weak pixel is kept only if it connects to a strong one.
-8. **Cleanup.** Components smaller than 15 pixels are removed.
+An Isodata threshold on $R$ gives the confident pixels. These act as seeds and grow into weaker neighbors as long as those pass a low threshold. A weak pixel is kept only if it connects to a strong one. Small components are removed at the end.
 
 **Results**
 
@@ -49,18 +32,7 @@ Mean Dice on the 20 images after each step:
 | **Grow vessels from confident seeds along connected pixels** | **0.737** |
 | *(for comparison) random forest on the same features* | *0.736* |
 
-The last gains came from topology, not from better filters. Thin capillaries were found but broken into pieces. Growing them from strong seeds reconnects them.
-
-Several other ideas did not help:
-
-| Variant | Dice |
-|---|---:|
-| Meijering filter alone | 0.682 |
-| Product of top-hat and Meijering | 0.584 |
-| Matched filter alone (very sensitive to noise) | 0.468 |
-| Component-tree filtering (Higra) | about 0.70 |
-
-Denoising with non-local means or a median filter erased capillaries and lowered the score. A random forest trained pixel by pixel on the three filter responses reached 0.736, which did not beat the hand-tuned pipeline.
+The last gains came from topology, not from better filters. Thin capillaries were found but broken into pieces. Growing them from strong seeds reconnects them. A random forest on the same features did not beat the hand-tuned pipeline.
 
 <div class="row justify-content-sm-center">
     <div class="col-sm-12 mt-3 mt-md-0">

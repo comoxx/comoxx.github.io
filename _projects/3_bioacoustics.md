@@ -10,7 +10,9 @@ github: https://github.com/comoxx/buggd_waraki
 
 Research internship at the [WickerLab](https://wickerlab.org/) (machine learning for the environment), University of Auckland, March to June 2025. Supervised by Joerg Wicker, in collaboration with the art and science collective Terrestrial Assemblages and the artist Simon Ingram.
 
-**The goal.** Bring the soundscape of a forest in Taranaki live into a museum. A microphone in the forest streams audio over 4G. A server receives it, a model identifies the birds that sing, and the museum turns it into sound and images. Everything has to run without anyone on site.
+I built a pipeline that streams audio from a forest microphone to a server and identifies the birds singing in it, live.
+
+**The goal.** Bring the soundscape of a forest in Taranaki live into a museum. A microphone in the forest streams audio over 4G. A server receives it, a model identifies the birds, and the museum turns the result into sound and images. Everything has to run without anyone on site.
 
 <div class="row justify-content-sm-center">
     <div class="col-sm-12 mt-3 mt-md-0">
@@ -39,7 +41,9 @@ The work fed into Simon Ingram's piece *Vibrating World: Rotokare Forest, 39.452
 
 The field device is a Bugg: a Raspberry Pi 3 with a microphone, a SIM card and an SD card. Out of the box it records long segments and uploads them in batches to Google Cloud. That is slow, costly, and not live.
 
-I rewrote its software in Python with two multi-threaded modes. In **streaming** mode the microphone never stops. Audio goes into a circular buffer in RAM, and a second thread compresses it and sends it over a WebSocket. In **saving** mode the device records fixed-length clips, then compresses them, writes them to the SD card and uploads them to an API endpoint. [Code on GitHub](https://github.com/comoxx/buggd_waraki).
+I rewrote its software in Python with two multi-threaded modes. In streaming mode the microphone never stops. Audio goes into a circular buffer in RAM, and a second thread compresses it and sends it over a WebSocket. In saving mode the device records fixed-length clips, compresses them, writes them to the SD card and uploads them to an API endpoint. [Code on GitHub](https://github.com/comoxx/buggd_waraki).
+
+The original software turns the modem off between uploads to save battery. The modem then needs about 30 seconds to reconnect, which is too slow for live audio. So streaming mode keeps the modem on and uses more power.
 
 ### Platform
 
@@ -64,14 +68,8 @@ I compared Google's Perch and Cornell's BirdNET, then used transfer learning on 
 
 ### Results in the field
 
-On common species (tūī, bellbird, silvereye) the fine-tuned model matches BirdNET's F1-score. Rare species stay hard because there is so little data. On real Bugg recordings the difference is clearer. Stock BirdNET often "hears" species that do not live in New Zealand. The fine-tuned model stays geographically consistent.
+On common species (tūī, bellbird, silvereye) the fine-tuned model matches BirdNET's F1-score. Rare species stay hard because there is so little data. On real Bugg recordings the difference is clearer. Stock BirdNET often predicts species that do not live in New Zealand, while the fine-tuned model stays geographically consistent. I also tried to build extra training clips by joining calls of different species, but it did not improve the model.
 
 When I left, the system worked end to end as a first version. In live mode the Bugg sent a new audio chunk every 3 seconds. The server ran the model on it, drew the spectrogram and showed the detected species. We set the detection threshold so that the installation shows many species, even if some detections are wrong.
 
-Some things did not work as hoped:
-
-- **Data augmentation.** I built extra training clips by joining calls of different species from separate recordings. It did not improve the model.
-- **Power and network.** The original Bugg software turns the modem off between uploads to save battery. The modem then needs about 30 seconds to reconnect, which is too slow for live audio. Live streaming keeps the modem on and uses more power.
-- **Field test.** We left the microphone for several days in a forest near Auckland. Battery, power use and waterproofing all needed care. The device also reset itself at night by default, which broke our code, so we could not test a full 24 hours.
-
-The outcome is a full IoT and AI pipeline that handles real-world signal with all its imperfections, from the microphone in the forest to the gallery.
+We also left the microphone for several days in a forest near Auckland. Battery, power use and waterproofing all needed care. The device also reset itself at night by default, which broke our code, so we could not test a full 24 hours.
