@@ -2,96 +2,85 @@
   type: map
   contents:
     - name: Full Name
-      value: Albert Einstein
-    - name: Date of Birth
-      value: 14th March 1879
+      value: Côme Hosxe
     - name: Languages
-      value: English, German
+      value: French (native), English (C1), Spanish (B1), German (B1)
+    - name: Availability
+      value: Full-time positions from November 2026
 
 - title: Education
   type: time_table
   contents:
-    - title: PhD
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1905
+    - title: Master Mathématiques, Vision, Apprentissage (MVA)
+      institution: ENS Paris-Saclay
+      year: 2025 - 2026
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Federal teaching diploma
-      institution: Eidgenössische Technische Hochschule, Zurich, Switzerland
-      year: 1900
+        - "Courses: Deep Learning, Deep Generative Models, Graphical Models, Multimodal Explainable AI, Convex Optimization, Large-Scale Optimization, Deep Learning for Medical Imaging."
+    - title: Engineering degree (MSc)
+      institution: CentraleSupélec, Université Paris-Saclay
+      year: 2022 - 2026
       description:
-        - Description 1.
-        - Description 2.
+        - "Major: Mathematics and Data Science. GPA: 4.33/4.33 (final year)."
+        - "Courses: Machine Learning, Reinforcement Learning, Computer Vision, Statistics, Stochastic Calculus, Harmonic Analysis."
+    - title: Preparatory class (MPSI, MP*)
+      institution: Lycée Louis-le-Grand, Paris
+      year: 2020 - 2022
 
 - title: Experience
   type: time_table
   contents:
-    - title: Professor of Theoretical Physics
-      institution: Institute for Advanced Study, Princeton University
-      year: 1933 - 1955
+    - title: Machine Learning Research Intern
+      institution: Callyope, Paris
+      year: May - Oct 2026
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Visiting Professor
-      institution: California Institute of Technology, Pasadena, California, US
-      year: 1933
+        - Research on reasoning in audio language models (ALMs) for speech-based mental-health assessment.
+        - Fine-tuned ALMs on self-generated chain-of-thought traces (STaR-style SFT, LoRA) and explored reinforcement learning with verifiable rewards (GRPO).
+        - Built an evaluation harness for open ALMs covering accuracy, calibration and audio grounding of reasoning, run at scale on HPC clusters (Jean Zay, Leonardo).
+    - title: Machine Learning Research Intern
+      institution: University of Auckland, New Zealand
+      year: Mar - Jul 2025
       description:
-        - Description 1.
-        - Description 2.
-
-    - title: Director
-      institution: Kaiser Wilhelm Institute for Physics, Berlin, Germany.
-      year: 1917-1933
-
-    - title: Professor of Theoretical Physics
-      institution: Karl-Ferdinand University, Prague, Czechoslovakia
-      year: 1911 - 1917
+        - Designed and developed a deep learning model for bioacoustic classification, enabling real-time bird species identification from audio recordings.
+        - Developed a 3D sound localization algorithm based on MUSIC (Multiple Signal Classification).
+        - Built a streaming and recording daemon for field acoustic sensors (Bugg devices).
+    - title: Data Scientist Intern
+      institution: Datamaran, Valencia, Spain
+      year: Jul - Dec 2024
       description:
+        - Developed a RAG system for extracting key information from corporate reports, exploring various embedding models, clustering techniques and deduplication methods.
+        - Studied cluster stability and implemented a web app to visualize and experiment with clustering.
+    - title: Teaching Assistant
+      institution: CentraleSupélec
+      year: Sep - Nov 2023
+      description:
+        - "Taught lectures and tutorials to 30 first-year students: Bash, Git, OOP, SQL, networks and computer security."
 
-    - title: Associate Professor of Theoretical Physics
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1909 - 1911
-
-- title: Open Source Projects
+- title: Projects
   type: time_table
   contents:
-    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-      year: 2015-now
-      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
+    - title: Multi-Robot Multi-Drone Systems
+      institution: Laboratoire des Signaux et Systèmes (L2S)
+      year: 2023 - 2024
+      description:
+        - Co-authored two published papers (IFAC WACE 2024, ECC 2024) on educational games in Python integrating image processing, control algorithms and pattern recognition.
+    - title: AI for Text-Based Deduction
+      institution: CentraleSupélec
+      year: 2025 - 2026
+      description:
+        - Developed an AI agent playing a text-based deduction game (Pédantix) using RL and NLP techniques.
 
-- title: Honors and Awards
+- title: Volunteering
   type: time_table
   contents:
-    - year: 1921
-      items:
-        - Nobel Prize in Physics
-        - Matteucci Medal
-    - year: 2029
-      items:
-        - Max Planck Medal
+    - title: President of Kampuchea Souriya
+      institution: Student solidarity association
+      year: 2022 - 2023
+      description:
+        - Led a student association working in Cambodia, raised over $30,000 and built its website.
 
-- title: Academic Interests
-  type: nested_list
-  contents:
-    - title: Topic 1.
-      items:
-        - Description 1.
-        - Description 2.
-    - title: Topic 2.
-      items:
-        - Description 1.
-        - Description 2.
-
-- title: Other Interests
+- title: Skills
   type: list
   contents:
-    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
+    - "<b>ML / LLM:</b> PyTorch, Hugging Face Transformers, LoRA fine-tuning, vLLM, reinforcement learning (GRPO), Scikit-learn, OpenCV."
+    - "<b>Engineering:</b> Python, SQL, Bash, Git, SLURM, HPC."
+    - "<b>Hobbies:</b> Freediving, hiking and outdoor activities, sudoku."

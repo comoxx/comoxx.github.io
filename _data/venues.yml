@@ -1,9 +1,7 @@
-"AJP":
-  url: https://aapt.scitation.org/journal/ajp
+"WACE":
+  url: https://wace2024.org/
   color: "#00369f"
 
-"PhysRev":
-  url: https://journals.aps.org/
-
-"Vision":
+"ECC":
+  url: https://ecc24.euca-ecc.org/
   color: "#009f36"
