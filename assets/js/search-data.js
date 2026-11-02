@@ -177,13 +177,6 @@ ninja.data = [{
           section: "Projects",handler: () => {
               window.location.href = "/projects/9_freediving_game/";
             },},{
-        id: 'social-email',
-        title: 'email',
-        section: 'Socials',
-        handler: () => {
-          window.open("mailto:%63%6F%6D%65.%68%6F%73%78%65@%67%6D%61%69%6C.%63%6F%6D", "_blank");
-        },
-      },{
         id: 'social-github',
         title: 'GitHub',
         section: 'Socials',
