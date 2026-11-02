@@ -66,4 +66,12 @@ I compared Google's Perch and Cornell's BirdNET, then used transfer learning on 
 
 On common species (tūī, bellbird, silvereye) the fine-tuned model matches BirdNET's F1-score. Rare species stay hard because there is so little data. On real Bugg recordings the difference is clearer. Stock BirdNET often "hears" species that do not live in New Zealand. The fine-tuned model stays geographically consistent.
 
+When I left, the system worked end to end as a first version. In live mode the Bugg sent a new audio chunk every 3 seconds. The server ran the model on it, drew the spectrogram and showed the detected species. We set the detection threshold so that the installation shows many species, even if some detections are wrong.
+
+Some things did not work as hoped:
+
+- **Data augmentation.** I built extra training clips by joining calls of different species from separate recordings. It did not improve the model.
+- **Power and network.** The original Bugg software turns the modem off between uploads to save battery. The modem then needs about 30 seconds to reconnect, which is too slow for live audio. Live streaming keeps the modem on and uses more power.
+- **Field test.** We left the microphone for several days in a forest near Auckland. Battery, power use and waterproofing all needed care. The device also reset itself at night by default, which broke our code, so we could not test a full 24 hours.
+
 The outcome is a full IoT and AI pipeline that handles real-world signal with all its imperfections, from the microphone in the forest to the gallery.
