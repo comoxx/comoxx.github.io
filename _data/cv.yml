@@ -6,7 +6,7 @@
     - name: Languages
       value: French (native), English (C1), Spanish (B1), German (B1)
     - name: Availability
-      value: Full-time positions from November 2026
+      value: Available immediately for full-time positions
 
 - title: Education
   type: time_table
@@ -15,7 +15,7 @@
       institution: ENS Paris-Saclay
       year: 2025 - 2026
       description:
-        - "Courses: Deep Learning, Deep Generative Models, Graphical Models, Multimodal Explainable AI, Convex Optimization, Large-Scale Optimization, Deep Learning for Medical Imaging."
+        - "Courses: Deep Learning, Generative Models, Graphical Models, Multimodal Explainable AI, Convex and Large-Scale Optimization, Deep Learning for Medical Imaging."
     - title: Engineering degree (MSc)
       institution: CentraleSupélec, Université Paris-Saclay
       year: 2022 - 2026
@@ -33,54 +33,57 @@
       institution: Callyope, Paris
       year: May - Oct 2026
       description:
-        - Research on reasoning in audio language models (ALMs) for speech-based mental-health assessment.
-        - Fine-tuned ALMs on self-generated chain-of-thought traces (STaR-style SFT, LoRA) and explored reinforcement learning with verifiable rewards (GRPO).
-        - Built an evaluation harness for open ALMs covering accuracy, calibration and audio grounding of reasoning, run at scale on HPC clusters (Jean Zay, Leonardo).
+        - "Research question: do reasoning audio language models (ALMs) ground their reasoning in the voice?"
+        - "Designed a benchmark that grades each acoustic claim of a model's reasoning against clinician ratings: 5 datasets (English, Spanish), 25 perceptual dimensions, 10 open-weight reasoning ALMs evaluated."
+        - Post-trained Qwen2.5-Omni (7B) with SFT on chain-of-thought traces, then GRPO with a reward I designed on claim correctness. Claim factuality went from 0.54 to 0.60.
+        - Multi-GPU training and evaluation on Jean Zay and Leonardo. First-author paper (ICASSP 2027 workshop).
     - title: Machine Learning Research Intern
-      institution: University of Auckland, New Zealand
-      year: Mar - Jul 2025
+      institution: WickerLab, University of Auckland, New Zealand
+      year: Mar - Jun 2025
       description:
-        - Designed and developed a deep learning model for bioacoustic classification, enabling real-time bird species identification from audio recordings.
-        - Developed a 3D sound localization algorithm based on MUSIC (Multiple Signal Classification).
-        - Built a streaming and recording daemon for field acoustic sensors (Bugg devices).
+        - Built a live bird detection pipeline, from a forest microphone to a museum art installation (2026).
+        - Fine-tuned BirdNET on New Zealand species with a 2,000-clip dataset from 3 sources, filtered by SNR and a teacher model. Unlike stock BirdNET, it does not predict non-native species on field recordings.
+        - Rewrote the recorder software (Raspberry Pi, 4G) for live WebSocket streaming and built a React/Django platform for researchers.
     - title: Data Scientist Intern
       institution: Datamaran, Valencia, Spain
       year: Jul - Dec 2024
       description:
-        - Developed a RAG system for extracting key information from corporate reports, exploring various embedding models, clustering techniques and deduplication methods.
-        - Studied cluster stability and implemented a web app to visualize and experiment with clustering.
+        - "RAG pipeline that suggests ESG impacts, risks and opportunities from corporate reports: embedding retrieval (incl. Matryoshka), UMAP/HDBSCAN theme clustering, LLM generation per cluster."
+        - Analysed cluster stability, sped up the pipeline, built semantic deduplication and a Streamlit app for experts.
     - title: Teaching Assistant
       institution: CentraleSupélec
       year: Sep - Nov 2023
       description:
         - "Taught lectures and tutorials to 30 first-year students: Bash, Git, OOP, SQL, networks and computer security."
 
+- title: Publications
+  type: list
+  contents:
+    - "First author, <i>SLP-Bench: Evaluating and Improving the Voice Claims of Reasoning Audio Language Models on Clinical Speech</i>. Submitted to an ICASSP 2027 workshop."
+    - "Co-author (L2S), <i>Delivery Race Game: a Stimulative Approach to Engage Youths in Robotics and Control</i>. IFAC WACE 2024."
+    - "Co-author (L2S), <i>DroPong: Revisiting the Pong Game with Aerial and Ground Drones</i>. European Control Conference 2024."
+
 - title: Projects
   type: time_table
   contents:
-    - title: Multi-Robot Multi-Drone Systems
-      institution: Laboratoire des Signaux et Systèmes (L2S)
-      year: 2023 - 2024
-      description:
-        - Co-authored two published papers (IFAC WACE 2024, ECC 2024) on educational games in Python integrating image processing, control algorithms and pattern recognition.
     - title: AI for Text-Based Deduction
-      institution: CentraleSupélec
-      year: 2025 - 2026
+      institution: CentraleSupélec, with Illuin Technology
+      year: Oct 2025 - Mar 2026
       description:
-        - Developed an AI agent playing a text-based deduction game (Pédantix) using RL and NLP techniques.
+        - AI agent for the word-guessing game Pédantix (RL, language models, clustering).
 
 - title: Volunteering
   type: time_table
   contents:
     - title: President of Kampuchea Souriya
       institution: Student solidarity association
-      year: 2022 - 2023
+      year: Dec 2022 - Dec 2023
       description:
         - Led a student association working in Cambodia, raised over $30,000 and built its website.
 
 - title: Skills
   type: list
   contents:
-    - "<b>ML / LLM:</b> PyTorch, Hugging Face Transformers, LoRA fine-tuning, vLLM, reinforcement learning (GRPO), Scikit-learn, OpenCV."
+    - "<b>ML / LLM:</b> PyTorch, Hugging Face Transformers, LoRA, vLLM, GRPO, Scikit-learn, OpenCV."
     - "<b>Engineering:</b> Python, SQL, Bash, Git, SLURM, HPC."
     - "<b>Hobbies:</b> Freediving, hiking and outdoor activities, sudoku."
